@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../static/css/style.css" th:href="@{/css/style.css}" />
+    <title>Сategories</title>
+</head>
+
+<body>
+<th:block th:include="/header"></th:block>
+<h1>Категории</h1>
+<div>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Наименование</th>
+        </tr>
+
+        <tr th:each="category : ${categories}">
+            <td th:utext="${category.id}">..</td>
+            <td th:utext="${category.name}">..</td>
+        </tr>
+    </table>
+</div>
+<br/><br/>
+<th:block th:include="/header"></th:block>
+</body>
+</html>

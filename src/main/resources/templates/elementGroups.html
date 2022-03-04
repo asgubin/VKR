@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../static/css/style.css" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../static/css/dropdown.css" th:href="@{/css/dropdown.css}" />
+
+    <script type="text/javascript"
+            src="../static/js/jquery-3.6.0.min.js" th:src="@{js/jquery-3.6.0.min.js}"></script>
+    <script type="text/javascript"
+            src="../static/js/core.js" th:src="@{js/core.js}"></script>
+    <script type="text/javascript"
+            src="../static/js/dropdown.js" th:src="@{js/dropdown.js}"></script>
+
+    <title>ElementGroups</title>
+
+    <script>
+        jQuery("document").ready(function($) {
+            $(".dropdown").dropdown();
+        });
+    </script>
+</head>
+
+<body>
+<th:block th:include="/header"></th:block>
+<h1>Элементы по группам конструкций</h1>
+<div>
+    <table width="100%">
+        <tr>
+            <th>Марка</th>
+            <th style="width: 10%">Профиль</th>
+            <th>Материал</th>
+            <th style="width: 35%">ФЕР (монтажа)</th>
+            <th style="width: 35%">ФССЦм (материал)</th>
+            <th>Стоимость</th>
+            <th></th>
+        </tr>
+
+        <tr th:each="element : ${elementGroups}">
+            <form method="POST" th:action="@{/editGroups}" >
+                <td>
+                    <input type="text" th:name="mark" th:value="${element.mark}" readonly/>
+                </td>
+                <td>
+                    <select th:name="family_id" >
+                        <option value="0" th:value="${element.family_id.id}" th:utext="${element.family_id.name}">..</option>
+                        <option th:each="family : ${families}" th:value="${family.id}" th:text="${family.name}"></option>
+                    </select>
+                </td>
+                <td th:utext="${element.material_id.name}">..</td>
+                <td>
+                    <select th:name="ferId">
+                        <option th:value="${element.ferId.id}" th:utext="${element.ferId.name}">..</option>
+                        <option th:each="fer : ${fers}" th:value="${fer.id}" th:text="${fer.name}"></option>
+                    </select>
+                </td>
+                <td>
+                    <select th:name="fsscmId">
+                        <option th:value="${element.fsscmId.id}" th:utext="${element.fsscmId.name}">..</option>
+                        <option th:each="fsscm : ${fsscms}" th:value="${fsscm.id}" th:text="${fsscm.name}"></option>
+                    </select>
+                </td>
+                <td th:utext="${#numbers.formatDecimal(element.coast, 1, 2)}">..</td>
+                <td>
+                    <button type="submit" name="submit" value="value" class="link-button">submit</button>
+                </td>
+            </form>
+        </tr>
+        <th></th><th></th><th></th><th></th><th>ВСЕГО</th>
+        <th th:utext="${#numbers.formatDecimal(fullCoast, 1, 2)}">..</th><th></th>
+    </table>
+</div>
+<br/><br/>
+<th:block th:include="/header"></th:block>
+</body>
+</html>

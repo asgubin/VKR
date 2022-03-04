@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../static/css/style.css" th:href="@{/css/style.css}" />
+
+    <title>Elements</title>
+</head>
+
+<body>
+<th:block th:include="/header"></th:block>
+<h1>Элементы конструкции</h1>
+<div>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Марка</th>
+            <th>Длина</th>
+            <th>Профиль</th>
+            <th>Материал</th>
+            <th>Отметка</th>
+            <th>Катекгория</th>
+            <th>ФЕР (монтаж) </th>
+            <th>ФССЦм (материал)</th>
+            <th>Стоимость</th>
+            <th></th>
+        </tr>
+        <tr th:each="element : ${elements}">
+            <form method="POST" th:action="@{/edit}" >
+                <td>
+                    <input type="text" th:name="id" th:value="${element.id}" readonly/>
+                </td>
+                <td th:utext="${element.mark}">..</td>
+                <td th:utext="${element.length}">..</td>
+                <td>
+                    <select th:name="family_id">
+                        <option value="0" th:utext="${element.family_id.name}">..</option>
+                        <option th:each="family : ${families}" th:value="${family.id}" th:text="${family.name}"></option>
+                    </select>
+                </td>
+                <td th:utext="${element.material_id.name}">..</td>
+                <td th:utext="${#numbers.formatDecimal(element.level_id.elevation, 1, 2)}">..</td>
+                <td th:utext="${element.category_id.name}">..</td>
+                <td th:utext="${element.ferId.id}">..</td>
+                <td th:utext="${element.fsscmId.id}">..</td>
+                <td th:utext="${#numbers.formatDecimal(element.coast, 1, 2)}">..</td>
+                <td>
+                    <button type="submit" name="submit" value="value" class="link-button">submit</button>
+                </td>
+            </form>
+        </tr>
+        <th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th>ВСЕГО</th>
+        <th th:utext="${#numbers.formatDecimal(fullCoast, 1, 2)}">..</th><th></th>
+
+    </table>
+</div>
+<br/><br/>
+<th:block th:include="/header"></th:block>
+</body>
+</html>

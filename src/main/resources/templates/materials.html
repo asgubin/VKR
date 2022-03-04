@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../static/css/style.css" th:href="@{/css/style.css}" />
+    <title>Materials</title>
+</head>
+
+<body>
+<th:block th:include="/header"></th:block>
+<h1>Материалы</h1>
+<div>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>ГОСТ, ТУ</th>
+            <th>Наименование</th>
+            <th>Катекгория</th>
+        </tr>
+
+        <tr th:each="material : ${materials}">
+            <td th:utext="${material.id}">..</td>
+            <td th:utext="${material.designation}">..</td>
+            <td th:utext="${material.name}">..</td>
+            <td th:utext="${material.category_id.name}">..</td>
+        </tr>
+    </table>
+</div>
+<br/><br/>
+<th:block th:include="/header"></th:block>
+</body>
+</html>

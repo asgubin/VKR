@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../static/css/style.css" th:href="@{/css/style.css}" />
+    <title>Levels</title>
+</head>
+
+<body>
+<th:block th:include="/header"></th:block>
+<h1>Уровни</h1>
+<div>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Наименование</th>
+            <th>Отметка</th>
+            <th>Катекгория</th>
+        </tr>
+
+        <tr th:each="level : ${levels}">
+            <td th:utext="${level.id}">..</td>
+            <td th:utext="${level.name}">..</td>
+            <td th:utext="${#numbers.formatDecimal(level.elevation, 1, 3)}">..</td>
+            <td th:utext="${level.category_id.name}">..</td>
+        </tr>
+    </table>
+</div>
+<br/><br/>
+<th:block th:include="/header"></th:block>
+</body>
+</html>

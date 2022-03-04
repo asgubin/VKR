@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../static/css/style.css" th:href="@{/css/style.css}" />
+    <title>Families</title>
+</head>
+
+<body>
+<th:block th:include="/header"></th:block>
+<h1>Семейства</h1>
+<div>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>ГОСТ, ТУ</th>
+            <th>Наименование</th>
+            <th>Вес</th>
+            <th>Площадь сечения</th>
+            <th>Катекгория</th>
+        </tr>
+
+        <tr th:each="family : ${families}">
+            <td th:utext="${family.id}">..</td>
+            <td th:utext="${family.designation}">..</td>
+            <td th:utext="${family.name}">..</td>
+            <td th:utext="${#numbers.formatDecimal(family.weight, 1, 2)}">..</td>
+            <td th:utext="${#numbers.formatDecimal(family.section_area, 1, 2)}">..</td>
+            <td th:utext="${family.category_id.name}">..</td>
+        </tr>
+    </table>
+</div>
+<br/><br/>
+<th:block th:include="/header"></th:block>
+</body>
+</html>

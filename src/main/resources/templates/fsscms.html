@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../static/css/style.css" th:href="@{/css/style.css}" />
+    <title>FSSCms</title>
+</head>
+
+<body>
+<th:block th:include="/header"></th:block>
+<h1>ФССЦм</h1>
+
+<h2>Добавить ФССЦм</h2>
+
+<div>
+    <table width="1500">
+        <tr>
+            <th>Id</th>
+            <th style="width: 80%">Наименование</th>
+            <th>Стоимость</th>
+            <th></th>
+        </tr>
+
+        <tr>
+            <form method="POST" th:action="@{/addFSSCm}" >
+                <td>
+                    <input type="text" th:name="id"/>
+                </td>
+                <td>
+                    <input type="text" th:name="name"/>
+                </td>
+                <td>
+                    <input type="text" th:name="coast"/>
+                </td>
+                <td>
+                    <button type="submit" name="submit" value="value" class="link-button">add</button>
+                </td>
+            </form>
+        </tr>
+    </table>
+</div>
+
+<h2>ФССЦм</h2>
+<div>
+    <table width="1500">
+        <tr>
+            <th>Id</th>
+            <th style="width: 80%">Наименование</th>
+            <th>Стоимость</th>
+            <th></th>
+        </tr>
+
+        <tr th:each="fsscm : ${fsscms}">
+            <form method="POST" th:action="@{/deleteFSSCm}" >
+                <td>
+                    <input type="text" th:name="id" th:value="${fsscm.id}" readonly/>
+                </td>
+                <td th:utext="${fsscm.name}">..</td>
+                <td th:utext="${#numbers.formatDecimal(fsscm.coast, 1, 2)}">..</td>
+                <td>
+                    <button type="submit" name="submit" value="value" class="link-button">delete</button>
+                </td>
+            </form>
+        </tr>
+    </table>
+</div>
+<br/><br/>
+<th:block th:include="/header"></th:block>
+</body>
+</html>
