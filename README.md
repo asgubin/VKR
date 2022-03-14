@@ -9,7 +9,8 @@
   
 ### Используемые технологии
   
-  Java 8
+  - Java 8
+  
   Spring Boot, Spring MVC, Spring Data JPA
   PostgreSQL
   Thymeleaf
