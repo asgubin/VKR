@@ -8,8 +8,8 @@
   Для элементов конструкции реализована возможность привязки расценок из ФССЦм и ФЕР и изменение профиля металлопроката с автоматической оценкой стоимости.
   
 # Используемые технологии
-Java 8
-Spring Boot, Spring MVC, Spring Data JPA
-PostgreSQL
-Thymeleaf
-JUnit 5, Mockito
+  Java 8
+  Spring Boot, Spring MVC, Spring Data JPA
+  PostgreSQL
+  Thymeleaf
+  JUnit 5, Mockito
