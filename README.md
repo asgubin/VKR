@@ -9,7 +9,7 @@
   
 ### Используемые технологии
   
-  - Java
+  - Java 17
   - Spring Boot, Spring MVC, Spring Data JPA
   - PostgreSQL
   - Thymeleaf
