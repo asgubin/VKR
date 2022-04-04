@@ -14,3 +14,4 @@
   - PostgreSQL
   - Thymeleaf
   - JUnit 5, Mockito
+  - Maven
